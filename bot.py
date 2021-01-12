@@ -1,5 +1,6 @@
 import discord
 import asyncio
+import datetime 
 import os
 import random
 from google_trans_new import google_translator  
@@ -15,8 +16,18 @@ async def on_ready():
 
 @tasks.loop(minutes=90)
 async def drinkwater():
-    channel = client.get_channel(744817323973804093)
-    await channel.send("Make sure to drink water Dodos!")
+    timenow = str(datetime.datetime.now().time())
+    timenow = timenow.split(':')
+    if (int(timenow[0]) < 9 or int(timenow[0]) > 22):
+        pass
+    else:
+        channel = client.get_channel(744817323973804093)
+        await channel.send("Make sure to drink water Dodos!")
+
+@client.command()
+async def translate(ctx,*,sentence):
+    translate_text = translator.translate(sentence,lang_tgt='en')  
+    await ctx.send(translate_text)
 
 @client.command()
 async def translate(ctx,*,sentence):
