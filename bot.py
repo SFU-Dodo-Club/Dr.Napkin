@@ -18,11 +18,11 @@ async def on_ready():
 async def drinkwater():
     timenow = str(datetime.datetime.now().time())
     timenow = timenow.split(':')
-    if (int(timenow[0]) < 9 or int(timenow[0]) > 22):
-        pass
-    else:
+    if (int(timenow[0]) >= 9 and int(timenow[0]) <= 22):
         channel = client.get_channel(744817323973804093)
         await channel.send("Make sure to drink water Dodos!")
+    else:
+        pass
 
 @client.command()
 async def translate(ctx,*,sentence):
