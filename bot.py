@@ -18,7 +18,8 @@ async def on_ready():
 async def drinkwater():
     timenow = str(datetime.datetime.now().time())
     timenow = timenow.split(':')
-    if ((int(timenow[0]) >= 9) and (int(timenow[0]) <= 22)):
+    print(int(timenow[0]))
+    if ((int(timenow[0]) >= 17) or (int(timenow[0]) <= 8)):
         channel = client.get_channel(744817323973804093)
         await channel.send("Make sure to drink water Dodos!")
     else:
