@@ -1,0 +1,5 @@
+discord.py[voice]
+httpx
+requests
+six
+google_trans_new
