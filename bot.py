@@ -50,7 +50,6 @@ async def on_member_leave(member):
     await channel.send(f"Goodbye {member.mention}!")
     
 
-
 @client.command()
 async def translate(ctx,*,sentence):
     translate_text = translator.translate(sentence,lang_tgt='en')  
