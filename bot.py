@@ -25,15 +25,16 @@ async def drinkwater():
     if ((int(timenow[0]) >= 17) or (int(timenow[0]) <= 8)):
         await channel.send("Make sure to drink water Dodos!")
 
-@tasks.loop(hours = 2)
+@tasks.loop(minutes = 120)
 async def goodmorning():
     timenow = str(datetime.datetime.now().time())
     timenow = timenow.split(':')
     print(int(timenow[0]))
-    if ((int(timenow[0]) == 17)):
-        await channel.send("Good Morning Dodos!")
-    elif((int(timenow[0]) == 9)):
-        await channel.send("Good Night!")
+    if ((int(timenow[0]) == 9):
+		await channel.send("Good Night Dodos!")
+	elif ((int(timenow[0]) == 17):
+		  await channel.send("Good Morning Dodos!")
+    
 
 
 @client.event
