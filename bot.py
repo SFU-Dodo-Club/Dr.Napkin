@@ -7,6 +7,7 @@ from google_trans_new import google_translator
 from discord.ext import commands, tasks
 
 client = commands.Bot(command_prefix = '-')
+
 channel = client.get_channel(744817323973804093)
 
 translator = google_translator()  
@@ -22,7 +23,6 @@ async def drinkwater():
     timenow = timenow.split(':')
     print(int(timenow[0]))
     if ((int(timenow[0]) >= 17) or (int(timenow[0]) <= 8)):
-        channel = client.get_channel(744817323973804093)
         await channel.send("Make sure to drink water Dodos!")
 
 @tasks.loop(hours = 2)
@@ -32,7 +32,7 @@ async def goodmorning():
     print(int(timenow[0]))
     if ((int(timenow[0]) == 17)):
         await channel.send("Good Morning Dodos!")
-    elif((int(timenow[0]) == 8)):
+    elif((int(timenow[0]) == 9)):
         await channel.send("Good Night!")
 
 
