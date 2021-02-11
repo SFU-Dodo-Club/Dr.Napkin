@@ -32,7 +32,7 @@ async def goodmorning():
     print(int(timenow[0]))
     if ((int(timenow[0]) == 9)):
 		await channel.send("Good Night Dodos!")
-	elif ((int(timenow[0]) == 17)):
+    elif ((int(timenow[0]) == 17)):
 		await channel.send("Good Morning Dodos!")
     
 
