@@ -8,8 +8,6 @@ from discord.ext import commands, tasks
 
 client = commands.Bot(command_prefix = '-')
 
-guild = client.get_guild(744817281871249428)
-channel = guild.get_channel(801326450396758076)
 
 translator = google_translator()  
 @client.event
@@ -20,6 +18,8 @@ async def on_ready():
 
 @tasks.loop(minutes=90)
 async def drinkwater():
+    guild = client.get_guild(744817281871249428)
+    channel = guild.get_channel(801326450396758076)
     timenow = str(datetime.datetime.now().time())
     timenow = timenow.split(':')
     print(int(timenow[0]))
@@ -28,6 +28,8 @@ async def drinkwater():
 
 @tasks.loop(minutes = 120)
 async def goodmorning():
+    guild = client.get_guild(744817281871249428)
+    channel = guild.get_channel(801326450396758076)
     timenow = str(datetime.datetime.now().time())
     timenow = timenow.split(':')
     print(int(timenow[0]))
@@ -45,10 +47,14 @@ async def on_message(message):
 
 @client.event
 async def on_member_join(member):
+    guild = client.get_guild(744817281871249428)
+    channel = guild.get_channel(801326450396758076)
     await channel.send(f"Welcome {member.mention}!")
 
 @client.event
 async def on_member_leave(member):
+    guild = client.get_guild(744817281871249428)
+    channel = guild.get_channel(801326450396758076)
     await channel.send(f"Goodbye {member.mention}!")
     
 
