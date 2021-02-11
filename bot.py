@@ -8,7 +8,8 @@ from discord.ext import commands, tasks
 
 client = commands.Bot(command_prefix = '-')
 
-channel = client.get_channel(744817323973804093)
+guild = client.get_guild(744817281871249428)
+channel = guild.get_channel(801326450396758076)
 
 translator = google_translator()  
 @client.event
