@@ -26,7 +26,7 @@ async def drinkwater():
     if ((int(timenow[0]) >= 17) or (int(timenow[0]) <= 8)):
         await channel.send("Make sure to drink water Dodos!")
 
-@tasks.loop(minutes = 120)
+@tasks.loop(minutes = 90)
 async def goodmorning():
     guild = client.get_guild(744817281871249428)
     channel = guild.get_channel(801326450396758076)
@@ -42,7 +42,7 @@ async def goodmorning():
 
 @client.event
 async def on_message(message):
-    if message.content.startswith('Hello'):
+    if (message.content.startswith('Hello') or message.content.startswith('HELLO') or message.content.startswith('hello')):
         await message.channel.send(f"{message.author.mention} Hello!")
 
 @client.event
