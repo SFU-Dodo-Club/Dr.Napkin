@@ -22,7 +22,7 @@ async def drinkwater():
     timenow = timenow.split(':')
     print(int(timenow[0]))
     if ((int(timenow[0]) >= 17) or (int(timenow[0]) <= 8)):
-        m = random.randint(1,3)
+        m = random.randint(0,2)
         await channel.send(messages[m])
 
 # @tasks.loop(minutes = 90)
