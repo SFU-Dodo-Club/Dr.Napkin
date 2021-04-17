@@ -132,7 +132,7 @@ async def on_raw_reaction_remove(payload):
     reaction = str(reaction)
     member = payload.user_id
     
-    member = guild.get_member(int(member))
+    member = guild.get_member(member)
 
     if str(payload.channel_id) != '744818329427902504':
         print("Wrong channel mate")
