@@ -25,17 +25,202 @@ async def drinkwater():
         m = random.randint(0,2)
         await channel.send(messages[m])
 
-# @tasks.loop(minutes = 90)
-# async def goodmorning():
-#     guild = client.get_guild(744817281871249428)
-#     channel = guild.get_channel(801326450396758076)
-#     timenow = str(datetime.datetime.now().time())
-#     timenow = timenow.split(':')
-#     print(int(timenow[0]))
-#     if ((int(timenow[0]) == 9)):
-#         await channel.send("Good Night Dodos!")
-#     elif ((int(timenow[0]) == 17)):
-#         await channel.send("Good Morning Dodos!")
+@client.event
+async def on_raw_reaction_add(payload):
+    guild = client.get_guild(744817281871249428)
+
+    reaction = payload.emoji
+    reaction = str(reaction)
+    member = payload.user_id
+    
+    member = guild.get_member(member)
+
+    if str(payload.channel_id) != '744818329427902504':
+        print("Wrong channel mate")
+        return
+    
+    elif reaction == "🔔":
+        print("DODO PROPER")
+        role = discord.utils.get(guild.roles, name="Dodo Proper")
+        await member.add_roles(role)
+
+    elif reaction == "🎵":
+        role = discord.utils.get(guild.roles, name="DJ")
+        print("DJ")
+        await member.add_roles(role)
+    
+    elif reaction == "🔣":
+        print("MISC")
+        role = discord.utils.get(guild.roles, name="--------------- Misc ---------------")
+        await member.add_roles(role)
+
+    elif reaction == "🖌":
+        print("COLOURS")
+        role = discord.utils.get(guild.roles, name="--------------- Colours---------------")
+        await member.add_roles(role)
+
+
+    elif reaction == "♈":
+        print("ARIES")
+        role = discord.utils.get(guild.roles, name = "Aries")
+        await member.add_roles(role)
+    
+    elif reaction == "♉":
+        print("T")
+        role = discord.utils.get(guild.roles, name = "Taurus")
+        await member.add_roles(role)
+
+    elif reaction == "♊":
+        print("G")
+        role = discord.utils.get(guild.roles, name = "Gemini")
+        await member.add_roles(role)
+
+    elif reaction == "♋":
+        print("C")
+        role = discord.utils.get(guild.roles, name = "Cancer")
+        await member.add_roles(role)
+
+    elif reaction == "♌":
+        print("L")
+        role = discord.utils.get(guild.roles, name = "Leo")
+        await member.add_roles(role)
+
+    elif reaction == "♍":
+        print("V")
+        role = discord.utils.get(guild.roles, name = "Virgo")
+        await member.add_roles(role)
+
+    elif reaction == "♎":
+        print("LI")
+        role = discord.utils.get(guild.roles, name = "Libra")
+        await member.add_roles(role)
+
+    elif reaction == "♏":
+        print("SC")
+        role = discord.utils.get(guild.roles, name = "Scorpio")
+        await member.add_roles(role)
+
+    elif reaction == "♐":
+        print("SA")
+        role = discord.utils.get(guild.roles, name = "Sagittarius")
+        await member.add_roles(role)
+
+    elif reaction == "♑":
+        print("CA")
+        role = discord.utils.get(guild.roles, name = "Capricorn")
+        await member.add_roles(role)
+
+    elif reaction == "♒":
+        print("AQ")
+        role = discord.utils.get(guild.roles, name = "Aquarius")
+        await member.add_roles(role)
+        
+    elif reaction == "♓":
+        print("PI")
+        role = discord.utils.get(guild.roles, name = "Pisces")
+        await member.add_roles(role)
+    else:
+        print("UHHHHHH")
+
+
+
+@client.event
+async def on_raw_reaction_remove(payload):
+    guild = client.get_guild(744817281871249428)
+
+    reaction = payload.emoji
+    reaction = str(reaction)
+    member = payload.user_id
+    
+    member = guild.get_member(member)
+
+    if str(payload.channel_id) != '744818329427902504':
+        print("Wrong channel mate")
+        return
+    
+    elif reaction == "🔔":
+        print("DODO PROPER")
+        role = discord.utils.get(guild.roles, name="Dodo Proper")
+        await member.remove_roles(role)
+
+    elif reaction == "🎵":
+        role = discord.utils.get(guild.roles, name="DJ")
+        print("DJ")
+        await member.remove_roles(role)
+    
+    elif reaction == "🔣":
+        print("MISC")
+        role = discord.utils.get(guild.roles, name="--------------- Misc ---------------")
+        await member.remove_roles(role)
+
+    elif reaction == "🖌":
+        print("COLOURS")
+        role = discord.utils.get(guild.roles, name="--------------- Colours---------------")
+        await member.remove_roles(role)
+
+
+    elif reaction == "♈":
+        print("ARIES")
+        role = discord.utils.get(guild.roles, name = "Aries")
+        await member.remove_roles(role)
+    
+    elif reaction == "♉":
+        print("T")
+        role = discord.utils.get(guild.roles, name = "Taurus")
+        await member.remove_roles(role)
+
+    elif reaction == "♊":
+        print("G")
+        role = discord.utils.get(guild.roles, name = "Gemini")
+        await member.remove_roles(role)
+
+    elif reaction == "♋":
+        print("C")
+        role = discord.utils.get(guild.roles, name = "Cancer")
+        await member.remove_roles(role)
+
+    elif reaction == "♌":
+        print("L")
+        role = discord.utils.get(guild.roles, name = "Leo")
+        await member.remove_roles(role)
+
+    elif reaction == "♍":
+        print("V")
+        role = discord.utils.get(guild.roles, name = "Virgo")
+        await member.remove_roles(role)
+
+    elif reaction == "♎":
+        print("LI")
+        role = discord.utils.get(guild.roles, name = "Libra")
+        await member.remove_roles(role)
+
+    elif reaction == "♏":
+        print("SC")
+        role = discord.utils.get(guild.roles, name = "Scorpio")
+        await member.remove_roles(role)
+
+    elif reaction == "♐":
+        print("SA")
+        role = discord.utils.get(guild.roles, name = "Sagittarius")
+        await member.remove_roles(role)
+
+    elif reaction == "♑":
+        print("CA")
+        role = discord.utils.get(guild.roles, name = "Capricorn")
+        await member.remove_roles(role)
+
+    elif reaction == "♒":
+        print("AQ")
+        role = discord.utils.get(guild.roles, name = "Aquarius")
+        await member.remove_roles(role)
+        
+    elif reaction == "♓":
+        print("PI")
+        role = discord.utils.get(guild.roles, name = "Pisces")
+        await member.remove_roles(role)
+    else:
+        print("UHHHHHH")
+        
     
 
 #Blackbox
