@@ -32,8 +32,8 @@ async def on_raw_reaction_add(payload):
     reaction = payload.emoji
     reaction = str(reaction)
     member = payload.user_id
-    
-    member = guild.get_member(member)
+    print(member)
+    member = guild.get_member(int(member))
 
     if str(payload.channel_id) != '744818329427902504':
         print("Wrong channel mate")
@@ -132,7 +132,7 @@ async def on_raw_reaction_remove(payload):
     reaction = str(reaction)
     member = payload.user_id
     
-    member = guild.get_member(member)
+    member = guild.get_member(int(member))
 
     if str(payload.channel_id) != '744818329427902504':
         print("Wrong channel mate")
