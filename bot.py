@@ -7,6 +7,9 @@ from discord.ext import commands, tasks
 
 client = commands.Bot(command_prefix = '-')
 
+intents = discord.Intents.default()
+intents.members = True
+
 
 @client.event
 async def on_ready():
