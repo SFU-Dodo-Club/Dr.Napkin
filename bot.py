@@ -39,9 +39,10 @@ async def songOTD():
         database = os.environ['DATABASE']
     )
     c = db.cursor()
-    c.execute(f"""SELECT column FROM table
+    c.execute(f"""SELECT songs_list FROM Songs
                 ORDER BY RAND()
                 LIMIT 1
+
     """)
     todaysSong = ''.join(map(str,c.fetchall()[0]))
     guild = client.get_guild(744817281871249428)
