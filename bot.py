@@ -3,6 +3,8 @@ import asyncio
 import datetime 
 import os
 import random
+import mysql
+import requests
 from discord.ext import commands, tasks
 
 intents = discord.Intents.default()
@@ -26,6 +28,52 @@ async def drinkwater():
     if ((int(timenow[0]) >= 17) or (int(timenow[0]) <= 8)):
         m = random.randint(0,2)
         await channel.send(f"{messages[m]} \nhttps://media.discordapp.net/attachments/744817323973804093/834601128598700052/image0.png?width=610&height=595")
+
+@tasks.loop(minutes=1440)
+async def songOTD():
+    db = mysql.connector.connect(
+        host= os.environ['HOST'],
+        user = os.environ['USER'],
+        password = os.environ['PASSWORD'],
+        database = os.environ['DATABASE']
+    )
+    c = db.cursor()
+    c.execute(f"""SELECT column FROM table
+                ORDER BY RAND()
+                LIMIT 1
+    """)
+    todaysSong = ''.join(map(str,c.fetchall()[0]))
+    guild = client.get_guild(744817281871249428)
+    channel = guild.get_channel(832025867471421480)
+    todayDate = datetime.datetime.today().strftime('%Y-%m-%d')
+    todayDate = str(todayDate)
+    await channel.send(f"**{todayDate}: Song of the day**: {todaysSong} ")
+    c.close()
+    db.close()
+
+
+
+@client.command()
+async def addsongs(ctx, url):
+    try:
+        song = requests.get(f'{url}',timeout=5)
+    except:
+        await ctx.send("Could not establish a connection to the url, or url is invald")
+    db = mysql.connector.connect(
+    host= os.environ['HOST'],
+    user = os.environ['USER'],
+    password = os.environ['PASSWORD'],
+    database = os.environ['DATABASE']
+)
+    c = db.cursor()
+    c.execute(f"""INSERT INTO Songs
+                  VALUES ({str(song)})
+                
+    """)
+    await ctx.send("Added")
+    c.close()
+    db.close()
+
 
 @client.event
 async def on_raw_reaction_add(payload):
