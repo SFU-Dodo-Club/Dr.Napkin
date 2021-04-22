@@ -68,8 +68,8 @@ async def addsongs(ctx, url):
     database = os.environ['DATABASE']
 )
     c = db.cursor()
-    c.execute(f"""INSERT INTO Songs
-                  VALUES ({str(song)})
+    c.execute(f"""INSERT INTO songs_list
+                  VALUES ('{song})
                 
     """)
     await ctx.send("Added")
