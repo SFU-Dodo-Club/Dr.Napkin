@@ -16,8 +16,8 @@ client = commands.Bot(command_prefix = '-',intents=intents)
 async def on_ready():
     print("Bot is Ready")
     drinkwater.start()
-    songOTD().start()
-    
+    songOTD.start()
+
 @tasks.loop(minutes=90)
 async def drinkwater():
     messages = ["Make sure to drink water Dodos!", "Love you dodos! Make sure to stay hydrated", "Guess what time it is: ||Drinking water time||. Love you Dodos!"]
