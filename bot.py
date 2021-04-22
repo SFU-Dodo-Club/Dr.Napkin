@@ -25,7 +25,7 @@ async def drinkwater():
     print(int(timenow[0]))
     if ((int(timenow[0]) >= 17) or (int(timenow[0]) <= 8)):
         m = random.randint(0,2)
-        await channel.send(messages[m])
+        await channel.send(f"{messages[m]} \nhttps://media.discordapp.net/attachments/744817323973804093/834601128598700052/image0.png?width=610&height=595")
 
 @client.event
 async def on_raw_reaction_add(payload):
