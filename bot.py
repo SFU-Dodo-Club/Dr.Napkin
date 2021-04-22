@@ -73,6 +73,7 @@ async def addsongs(ctx, url):
                   VALUES ('{url}')
                 
     """)
+    db.commit()
     await ctx.send("Added")
     c.close()
     db.close()
