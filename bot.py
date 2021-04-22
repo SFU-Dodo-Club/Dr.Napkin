@@ -68,8 +68,9 @@ async def addsongs(ctx, url):
     database = os.environ['DATABASE']
 )
     c = db.cursor()
+    print(url)
     c.execute(f"""INSERT INTO songs_list
-                  VALUES ({url})
+                  VALUES ('{url}')
                 
     """)
     await ctx.send("Added")
@@ -80,7 +81,6 @@ async def addsongs(ctx, url):
 @client.event
 async def on_raw_reaction_add(payload):
     guild = client.get_guild(744817281871249428)
-
     reaction = payload.emoji
     reaction = str(reaction)
     member = payload.user_id
