@@ -3,7 +3,7 @@ import asyncio
 import datetime 
 import os
 import random
-import mysql
+import mysql.connector
 import requests
 from discord.ext import commands, tasks
 
