@@ -3,3 +3,4 @@ httpx
 requests
 six
 google_trans_new
+mysql-connector-python
