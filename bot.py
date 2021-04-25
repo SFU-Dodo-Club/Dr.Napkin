@@ -28,7 +28,8 @@ async def drinkwater():
     print(int(timenow[0]))
     if ((int(timenow[0]) >= 17) or (int(timenow[0]) <= 8)):
         m = random.randint(0,2)
-        await channel.send(f"{messages[m]} {file = discord.File('water.png')}")
+        await channel.send(f"{messages[m]}")
+        await channel.send(file=discord.File('upvote.png')) 
 
 @tasks.loop(minutes=1440)
 async def songOTD():
