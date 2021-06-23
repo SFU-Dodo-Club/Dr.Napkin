@@ -15,6 +15,7 @@ client = commands.Bot(command_prefix = '-',intents=intents)
 @client.event
 async def on_ready():
     print("Bot is Ready")
+    eventswen.start()
     drinkwater.start()
     songOTD.start()
 
@@ -30,6 +31,12 @@ async def drinkwater():
         m = random.randint(0,2)
         await channel.send(f"{messages[m]}")
         await channel.send("https://raw.githubusercontent.com/SFU-Dodo-Club/Dr.Napkin/main/water.png") 
+        
+@tasks.loop(minutes=1440)
+async def eventswen():
+    guild = client.get_guild(744817281871249428)
+    channel = guild.get_channel(755511228654420122)
+    await channel.send("More events wen <@632326508949798925>") 
 
 @tasks.loop(minutes=1440)
 async def songOTD():
