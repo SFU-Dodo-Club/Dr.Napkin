@@ -19,9 +19,9 @@ async def on_ready():
     drinkwater.start()
     songOTD.start()
 
-@tasks.loop(minutes=90)
+@tasks.loop(minutes=60)
 async def drinkwater():
-    messages = ["Make sure to drink water Dodos!", "Love you dodos! Make sure to stay hydrated", "Guess what time it is: ||Drinking water time||. Love you Dodos!"]
+    messages = ["It's getting warm out Dodos. Make sure to stay hydrated!", "Heat Wave! Stay hydrated and drink water", "It is water time!", "Drink Water or Else"]
     guild = client.get_guild(744817281871249428)
     channel = guild.get_channel(801326450396758076)
     timenow = str(datetime.datetime.now().time())
@@ -30,7 +30,7 @@ async def drinkwater():
     if ((int(timenow[0]) >= 17) or (int(timenow[0]) <= 8)):
         m = random.randint(0,2)
         await channel.send(f"{messages[m]}")
-        await channel.send("https://raw.githubusercontent.com/SFU-Dodo-Club/Dr.Napkin/main/water.png") 
+        #await channel.send("https://raw.githubusercontent.com/SFU-Dodo-Club/Dr.Napkin/main/water.png") 
         
 @tasks.loop(minutes=1440)
 async def eventswen():
