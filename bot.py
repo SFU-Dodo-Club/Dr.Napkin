@@ -15,13 +15,12 @@ client = commands.Bot(command_prefix = '-',intents=intents)
 @client.event
 async def on_ready():
     print("Bot is Ready")
-    eventswen.start()
     drinkwater.start()
     songOTD.start()
 
-@tasks.loop(minutes=60)
+@tasks.loop(minutes=120)
 async def drinkwater():
-    messages = ["It's getting warm out Dodos. Make sure to stay hydrated!", "Heat Wave! Stay hydrated and drink water", "It is water time!", "Drink Water or Else"]
+    messages = ["Time to grab a drink!", "It is water o'clock! Go drink water!", "It is water time!", "Drink Water or Else"]
     guild = client.get_guild(744817281871249428)
     channel = guild.get_channel(801326450396758076)
     timenow = str(datetime.datetime.now().time())
@@ -31,12 +30,6 @@ async def drinkwater():
         m = random.randint(0,2)
         await channel.send(f"{messages[m]}")
         #await channel.send("https://raw.githubusercontent.com/SFU-Dodo-Club/Dr.Napkin/main/water.png") 
-        
-@tasks.loop(minutes=1440)
-async def eventswen():
-    guild = client.get_guild(744817281871249428)
-    channel = guild.get_channel(755511228654420122)
-    await channel.send("More events wen <@632326508949798925>") 
 
 @tasks.loop(minutes=1440)
 async def songOTD():
