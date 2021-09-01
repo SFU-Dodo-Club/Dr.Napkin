@@ -11,7 +11,7 @@ intents = discord.Intents.default()
 intents.members = True
 client = commands.Bot(command_prefix='-', intents=intents)
 
-
+#comment to get push
 @client.event
 async def on_ready():
     print("Bot is Ready")
