@@ -15,69 +15,81 @@ client = commands.Bot(command_prefix = '-',intents=intents)
 @client.event
 async def on_ready():
     print("Bot is Ready")
-    drinkwater.start()
-    songOTD.start()
-
-@tasks.loop(minutes=120)
-async def drinkwater():
-    messages = ["Time to grab a drink!", "It is water o'clock! Go drink water!", "It is water time!", "Drink Water or Else"]
-    guild = client.get_guild(744817281871249428)
-    channel = guild.get_channel(801326450396758076)
-    timenow = str(datetime.datetime.now().time())
-    timenow = timenow.split(':')
-    print(int(timenow[0]))
-    if ((int(timenow[0]) >= 17) or (int(timenow[0]) <= 8)):
-        m = random.randint(0,2)
-        await channel.send(f"{messages[m]}")
-        #await channel.send("https://raw.githubusercontent.com/SFU-Dodo-Club/Dr.Napkin/main/water.png") 
-
-@tasks.loop(minutes=1440)
-async def songOTD():
     db = mysql.connector.connect(
         host= os.environ['HOST'],
         user = os.environ['USER'],
         password = os.environ['PASSWORD'],
         database = os.environ['DATABASE']
-    )
+        )
     c = db.cursor()
-    c.execute(f"""SELECT songs_list FROM Songs
-                ORDER BY RAND()
-                LIMIT 1
-
-    """)
-    todaysSong = ''.join(map(str,c.fetchall()[0]))
-    guild = client.get_guild(744817281871249428)
-    channel = guild.get_channel(832025867471421480)
-    todayDate = datetime.datetime.today().strftime('%Y-%m-%d')
-    todayDate = str(todayDate)
-    await channel.send(f"**{todayDate}: Song of the day**: {todaysSong} ")
-    c.close()
-    db.close()
-
-
-
-@client.command()
-async def addsongs(ctx, url):
-    try:
-        song = requests.get(f'{url}',timeout=5)
-    except:
-        await ctx.send("Could not establish a connection to the url, or url is invald")
-    db = mysql.connector.connect(
-    host= os.environ['HOST'],
-    user = os.environ['USER'],
-    password = os.environ['PASSWORD'],
-    database = os.environ['DATABASE']
-)
-    c = db.cursor()
-    print(url)
-    c.execute(f"""INSERT INTO Songs
-                  VALUES ('{url}')
-                
-    """)
+    c.execute(f"""ALTER TABLE Songs ADD COLUMN datetimeyear INT DEFAULT 0
+        """)
     db.commit()
-    await ctx.send("Added")
     c.close()
     db.close()
+    print("MWHAHAHA")
+    # drinkwater.start()
+    # songOTD.start()
+
+# @tasks.loop(minutes=120)
+# async def drinkwater():
+#     messages = ["Time to grab a drink!", "It is water o'clock! Go drink water!", "It is water time!", "Drink Water or Else"]
+#     guild = client.get_guild(744817281871249428)
+#     channel = guild.get_channel(801326450396758076)
+#     timenow = str(datetime.datetime.now().time())
+#     timenow = timenow.split(':')
+#     print(int(timenow[0]))
+#     if ((int(timenow[0]) >= 17) or (int(timenow[0]) <= 8)):
+#         m = random.randint(0,2)
+#         await channel.send(f"{messages[m]}")
+
+# @tasks.loop(minutes=1440)
+# async def songOTD():
+#     db = mysql.connector.connect(
+#         host= os.environ['HOST'],
+#         user = os.environ['USER'],
+#         password = os.environ['PASSWORD'],
+#         database = os.environ['DATABASE']
+#     )
+#     c = db.cursor()
+#     c.execute(f"""SELECT songs_list FROM Songs
+#                 ORDER BY RAND()
+#                 LIMIT 1
+#
+#     """)
+#     todaysSong = ''.join(map(str,c.fetchall()[0]))
+#     guild = client.get_guild(744817281871249428)
+#     channel = guild.get_channel(832025867471421480)
+#     todayDate = datetime.datetime.today().strftime('%Y-%m-%d')
+#     todayDate = str(todayDate)
+#     await channel.send(f"**{todayDate}: Song of the day**: {todaysSong} ")
+#     c.close()
+#     db.close()
+
+
+
+# @client.command()
+# async def addsongs(ctx, url):
+#     try:
+#         song = requests.get(f'{url}',timeout=5)
+#     except:
+#         await ctx.send("Could not establish a connection to the url, or url is invald")
+#     db = mysql.connector.connect(
+#     host= os.environ['HOST'],
+#     user = os.environ['USER'],
+#     password = os.environ['PASSWORD'],
+#     database = os.environ['DATABASE']
+# )
+#     c = db.cursor()
+#     print(url)
+#     c.execute(f"""INSERT INTO Songs
+#                   VALUES ('{url}')
+#
+#     """)
+#     db.commit()
+#     await ctx.send("Added")
+#     c.close()
+#     db.close()
 
 
 @client.event
