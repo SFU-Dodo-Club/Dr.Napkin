@@ -42,7 +42,7 @@ async def songOTD():
         database=os.environ['DATABASE']
     )
     c = db.cursor()
-    c.execute(f"""SELECT * FROM datetimeyear
+    c.execute(f"""SELECT datetimeyear FROM Songs
 
     """)
     datestored = ''.join(map(str, c.fetchall()[0]))
@@ -71,7 +71,11 @@ async def songOTD():
         channel = guild.get_channel(832025867471421480)
         todayDate = datetime.datetime.today().strftime('%Y-%m-%d')
         todayDate = str(todayDate)
+        c.execute(f"""UPDATE Songs
+                    SET datetimeyear = {int(todayDate)}
 
+                """)
+        db.commit()
         await channel.send(f"**{todayDate}: Song of the day**: {todaysSong} ")
         c.close()
         db.close()
