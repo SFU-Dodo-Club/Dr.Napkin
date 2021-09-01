@@ -49,9 +49,9 @@ async def songOTD():
     datestored = int(datestored)
     c.close()
     db.close()
-    todayDate = datetime.datetime.today().strftime('%d')
-    todayDate = int(todayDate)
-    if datestored == todayDate:
+    todayDateD = datetime.datetime.today().strftime('%d')
+    todayDateD = int(todayDateD)
+    if datestored == todayDateD:
         pass
     else:
         db = mysql.connector.connect(
@@ -72,7 +72,7 @@ async def songOTD():
         todayDate = datetime.datetime.today().strftime('%Y-%m-%d')
         todayDate = str(todayDate)
         c.execute(f"""UPDATE Songs
-                    SET datetimeyear = {int(todayDate)}
+                    SET datetimeyear = {todayDateD}
 
                 """)
         db.commit()
