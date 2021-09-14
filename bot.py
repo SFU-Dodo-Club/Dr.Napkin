@@ -33,13 +33,9 @@ async def drinkwater():
         m = random.randint(0, 2)
         await channel.send(f"{messages[m]}")
     
-    too = guild.get_member(183227077942706176)
+    ader = guild.get_member(632326508949798925)
     #ader = guild.get_member(632326508949798925)
-    try:   
-        await too.send("TOOOO")
-    except: #Debunking stackoverflow
-        await too.send("TOOOOOOOO")
-    #await ader.send("ADERRRRCHIII")
+    await ader.send("ADERRRRCHIII")
 
 
 @tasks.loop(minutes=1440)
