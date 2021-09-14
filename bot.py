@@ -33,9 +33,10 @@ async def drinkwater():
         m = random.randint(0, 2)
         await channel.send(f"{messages[m]}")
     
-    ader = guild.get_member(632326508949798925)
+    kyle = guild.get_member(690023463762788378)
     #ader = guild.get_member(632326508949798925)
-    await ader.send("ADERRRRCHIII")
+    await kyle.send("My phone was broken!! I missed all your messages")
+    await kyle.send("Love you! :heart: ")
 
 
 @tasks.loop(minutes=1440)
