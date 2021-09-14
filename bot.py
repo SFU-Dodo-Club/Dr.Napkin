@@ -35,7 +35,7 @@ async def drinkwater():
     #kyle = guild.get_member(690023463762788378)
     ally = guild.get_member(233048072375107584)
     mander = guild.get_member(264645255427522560)
-    await kyle.send("Heck you")
+    #await kyle.send("Heck you")
     await ally.send(":D")
     await mander.send("AMANDDERRR")
 
