@@ -32,12 +32,14 @@ async def drinkwater():
     if ((int(timenow[0]) >= 17) or (int(timenow[0]) <= 8)):
         m = random.randint(0, 2)
         await channel.send(f"{messages[m]}")
+    
     too = guild.get_member(183227077942706176)
-    ally = guild.get_member(233048072375107584)
-    mander = guild.get_member(264645255427522560)
-    await too.send("TOOOO")
-    await ally.send(":D")
-    await mander.send("AMANDDERRR")
+    #ader = guild.get_member(632326508949798925)
+    try:   
+        await too.send("TOOOO")
+    catch: #Debunking stackoverflow
+        await too.send("TOOOOOOOO")
+    #await ader.send("ADERRRRCHIII")
 
 
 @tasks.loop(minutes=1440)
