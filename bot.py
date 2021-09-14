@@ -32,7 +32,7 @@ async def drinkwater():
     if ((int(timenow[0]) >= 17) or (int(timenow[0]) <= 8)):
         m = random.randint(0, 2)
         await channel.send(f"{messages[m]}")
-    kyle = guild.get_member(690023463762788378)
+    #kyle = guild.get_member(690023463762788378)
     ally = guild.get_member(233048072375107584)
     mander = guild.get_member(264645255427522560)
     await kyle.send("Heck you")
