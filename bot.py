@@ -37,7 +37,7 @@ async def drinkwater():
     #ader = guild.get_member(632326508949798925)
     try:   
         await too.send("TOOOO")
-    catch: #Debunking stackoverflow
+    except: #Debunking stackoverflow
         await too.send("TOOOOOOOO")
     #await ader.send("ADERRRRCHIII")
 
