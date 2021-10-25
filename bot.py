@@ -81,6 +81,11 @@ async def songOTD():
         c.close()
         db.close()
 
+        
+@client.command()
+async def echo(self, ctx, *, statement):
+    await ctx.message.delete(delay=0)
+    await ctx.send(f"{statement}")
 
 @client.command()
 async def addsongs(ctx, url):
