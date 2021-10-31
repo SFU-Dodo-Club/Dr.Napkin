@@ -16,41 +16,12 @@ client = commands.Bot(command_prefix='-', intents=intents)
 async def on_ready():
     print("Bot is Ready")
     drinkwater.start()
-    guild = client.get_guild(744817281871249428)
-    halloween_roles = ["Dodo Goblin", "Dodo Ghost", "Dodo Witch", "Dodo Pumpkin", "Dodo Skeleton"]
-    db = mysql.connector.connect(
-        host=os.environ['HOST'],
-        user=os.environ['USER'],
-        password=os.environ['PASSWORD'],
-        database=os.environ['DATABASE']
-    )
-    c = db.cursor()
-    c.execute(f"""SELECT id
-                    FROM dodos
-                    """)
-    all_dodos = c.fetchall()
-    for i in range(0, len(all_dodos)):
-        userid = int(all_dodos[i][0])
-        member = guild.get_member(int(userid))
-        role_assign = random.choices(halloween_roles)[0]
-        print(role_assign)
-        role = discord.utils.get(guild.roles, name=role_assign)
-        print(member)
-        try:
-            await member.add_roles(role)
-            print("Yass")
-        except:
-            pass
-
-    c.close()
-    db.close()
-    
 
 
 @tasks.loop(minutes=120)
 async def drinkwater():
-    messages = ["Time to grab a drink!", "It is water o'clock! Go drink water!", "It is water time!",
-                "Drink Water or Else"]
+    messages = ["Trick or Treat!", "It is candy o'clock! Go eat some candy!", "It is chocolate time!",
+                "Treat or Treat, either way, pay yp!"]
     guild = client.get_guild(744817281871249428)
     channel = guild.get_channel(801326450396758076)
     timenow = str(datetime.datetime.now().time())
