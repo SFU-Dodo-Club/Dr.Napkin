@@ -34,7 +34,7 @@ async def on_ready():
         member = guild.get_member(int(userid))
         role_assign = random.choices(halloween_roles)[0]
         print(role_assign)
-        role = nextcord.utils.get(guild.roles, name=role_assign)
+        role = discord.utils.get(guild.roles, name=role_assign)
         print(member)
         try:
             await member.add_roles(role)
