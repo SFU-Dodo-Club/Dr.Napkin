@@ -18,10 +18,10 @@ async def on_ready():
     drinkwater.start()
 
 
-@tasks.loop(minutes=120)
+@tasks.loop(minutes=180)
 async def drinkwater():
-    messages = ["Trick or Treat!", "It is candy o'clock! Go eat some candy!", "It is chocolate time!",
-                "Treat or Treat, either way, pay yp!"]
+    messages = ["Water Time!", "It is water o'clock! Go drink some water!", "It is hydration time!",
+                "Drink Water, or else. "]
     guild = client.get_guild(744817281871249428)
     channel = guild.get_channel(801326450396758076)
     timenow = str(datetime.datetime.now().time())
@@ -85,28 +85,28 @@ async def echo(self, ctx, *, statement):
     await ctx.message.delete(delay=0)
     await ctx.send(f"{statement}")
 
-@client.command()
-async def addsongs(ctx, url):
-    try:
-        song = requests.get(f'{url}', timeout=5)
-    except:
-        await ctx.send("Could not establish a connection to the url, or url is invald")
-    db = mysql.connector.connect(
-        host=os.environ['HOST'],
-        user=os.environ['USER'],
-        password=os.environ['PASSWORD'],
-        database=os.environ['DATABASE']
-    )
-    c = db.cursor()
-    print(url)
-    c.execute(f"""INSERT INTO Songs
-                  VALUES ('{url}', 0)
+# @client.command()
+# async def addsongs(ctx, url):
+#     try:
+#         song = requests.get(f'{url}', timeout=5)
+#     except:
+#         await ctx.send("Could not establish a connection to the url, or url is invald")
+#     db = mysql.connector.connect(
+#         host=os.environ['HOST'],
+#         user=os.environ['USER'],
+#         password=os.environ['PASSWORD'],
+#         database=os.environ['DATABASE']
+#     )
+#     c = db.cursor()
+#     print(url)
+#     c.execute(f"""INSERT INTO Songs
+#                   VALUES ('{url}', 0)
 
-    """)
-    db.commit()
-    await ctx.send("Added")
-    c.close()
-    db.close()
+#     """)
+#     db.commit()
+#     await ctx.send("Added")
+#     c.close()
+#     db.close()
 
 
 @client.event
