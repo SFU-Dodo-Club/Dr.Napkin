@@ -332,6 +332,39 @@ async def on_raw_reaction_remove(payload):
         print("PI")
         role = discord.utils.get(guild.roles, name="Pisces")
         await member.remove_roles(role)
+
+    elif reaction == "🌱":
+        role = discord.utils.get(guild.roles, name="she/her")
+        await member.remove_roles(role)
+
+    elif reaction == "🌲":
+        role = discord.utils.get(guild.roles, name="he/him")
+        await member.remove_roles(role)
+
+    elif reaction == "🌴":
+        role = discord.utils.get(guild.roles, name="they/them")
+        await member.remove_roles(role)
+
+    elif reaction == "🌵":
+        role = discord.utils.get(guild.roles, name="fae/faer")
+        await member.remove_roles(role)
+
+    elif reaction == "🌿":
+        role = discord.utils.get(guild.roles, name="ze/zir")
+        await member.remove_roles(role)
+
+    elif reaction == "☘":
+        role = discord.utils.get(guild.roles, name="xe/xem")
+        await member.remove_roles(role)
+
+    elif reaction == "🌳":
+        role = discord.utils.get(guild.roles, name="ze/hir")
+        await member.remove_roles(role)
+
+    elif reaction == "🍃":
+        role = discord.utils.get(guild.roles, name="any")
+        await member.remove_roles(role)
+
     else:
         print("UHHHHHH")
 
