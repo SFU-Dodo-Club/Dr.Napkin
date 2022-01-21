@@ -202,9 +202,42 @@ async def on_raw_reaction_add(payload):
         print("PI")
         role = discord.utils.get(guild.roles, name="Pisces")
         await member.add_roles(role)
+
+    elif reaction == "🌱":
+        role = discord.utils.get(guild.roles, name="she/her")
+        await member.add_roles(role)
+
+    elif reaction == "🌲":
+        role = discord.utils.get(guild.roles, name="he/him")
+        await member.add_roles(role)
+
+    elif reaction == "🌴":
+        role = discord.utils.get(guild.roles, name="they/them")
+        await member.add_roles(role)
+
+    elif reaction == "🌵":
+        role = discord.utils.get(guild.roles, name="fae/faer")
+        await member.add_roles(role)
+
+    elif reaction == "🌿":
+        role = discord.utils.get(guild.roles, name="ze/zir")
+        await member.add_roles(role)
+
+    elif reaction == "☘":
+        role = discord.utils.get(guild.roles, name="xe/xem")
+        await member.add_roles(role)
+
+    elif reaction == "🌳":
+        role = discord.utils.get(guild.roles, name="ze/hir")
+        await member.add_roles(role)
+
+    elif reaction == "🍃":
+        role = discord.utils.get(guild.roles, name="any")
+        await member.add_roles(role)
+
     else:
         print("UHHHHHH")
-
+emojisToAdd = [, "", "", "", "", "", "", ""]
 
 @client.event
 async def on_raw_reaction_remove(payload):
