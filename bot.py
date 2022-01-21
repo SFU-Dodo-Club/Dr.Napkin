@@ -237,7 +237,6 @@ async def on_raw_reaction_add(payload):
 
     else:
         print("UHHHHHH")
-emojisToAdd = [, "", "", "", "", "", "", ""]
 
 @client.event
 async def on_raw_reaction_remove(payload):
