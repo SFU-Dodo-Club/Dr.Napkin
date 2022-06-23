@@ -10,7 +10,7 @@ from discord.ext import commands, tasks
 intents = discord.Intents.default()
 intents.members = True
 client = commands.Bot(command_prefix='-', intents=intents)
-
+msg_count = 0
 #comment to get push
 @client.event
 async def on_ready():
@@ -79,6 +79,15 @@ async def songOTD():
         c.close()
         db.close()
 
+        
+@client.event
+async def on_message(message):
+    msg_count += 1
+    if msg_count % 100 = 0:
+        guild = client.get_guild(744817281871249428)
+        channel = guild.get_channel(801326450396758076)
+        await channel.send("HONK")
+        
         
 @client.command()
 async def echo(self, ctx, *, statement):
