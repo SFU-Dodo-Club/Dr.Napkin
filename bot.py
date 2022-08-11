@@ -11,6 +11,7 @@ intents = discord.Intents.default()
 intents.members = True
 client = commands.Bot(command_prefix='-', intents=intents)
 msg_count = 0
+
 #comment to get push
 @client.event
 async def on_ready():
@@ -18,7 +19,52 @@ async def on_ready():
     drinkwater.start()
 
 
-@tasks.loop(minutes=180)
+@client.event
+async def on_message_delete(message):
+    if str(message.author.id) == "773081074418712576":
+        return 
+    embed=discord.Embed(title="{} deleted a message".format(message.author.name), description=message.content, color=0x968cec)
+    embed.add_field(name= "Discord ID" ,value=message.author.id)
+    embed.add_field(name= "Channel" ,value=message.channel)
+    guild = client.get_guild(744817281871249428)
+    channel = guild.get_channel(800965152132431892)
+    await channel.send(embed=embed)
+
+
+@client.event
+async def on_message_edit(message_before, message_after):
+    if str(message_before.author.id) == "773081074418712576":
+        return
+
+    elif len(list(message_before.content)) + len(list(message_after.content)) < 3500:
+        embed_description = "**Old Message** \n" + message_before.content + "\n\n**New Message**\n" + message_after.content
+        embed=discord.Embed(title="{} Edited A Message".format(message_before.author.name), description=embed_description, color=0x968cec)
+        embed.add_field(name= "Discord ID" ,value=message_before.author.id)
+        embed.add_field(name= "Channel" ,value=message_before.channel)
+        guild = client.get_guild(744817281871249428)
+        channel = guild.get_channel(800965152132431892)
+        await channel.send(embed=embed)
+    else:
+        embed=discord.Embed(title="{} Edited A Message".format(message_before.author.name), description=message_before.content, color=0x968cec)
+        embed.add_field(name= "Discord ID" ,value=message_before.author.id)
+        embed.add_field(name= "Channel" ,value=message_before.channel)
+        guild = client.get_guild(744817281871249428)
+        channel = guild.get_channel(800965152132431892)
+        await channel.send(embed=embed)
+
+        embed=discord.Embed(title="{} New Message".format(message_after.author.name), description=message_after.content, color=0x968cec)
+        embed.add_field(name= "Discord ID" ,value=message_after.author.id)
+        embed.add_field(name= "Channel" ,value=message_after.channel)
+        guild = client.get_guild(744817281871249428)
+        channel = guild.get_channel(800965152132431892)
+        await channel.send(embed=embed)
+
+
+
+    
+
+
+@tasks.loop(minutes=90)
 async def drinkwater():
     messages = ["Water Time!", "It is water o'clock! Go drink some water!", "It is hydration time!",
                 "Drink Water, or else. "]
@@ -27,8 +73,10 @@ async def drinkwater():
     timenow = str(datetime.datetime.now().time())
     timenow = timenow.split(':')
     print(int(timenow[0]))
+    if ( 7 <= (int(timenow[0])) <= 12):
+        await channel.send(f"Remember to sleep my fleurs")
     if ((int(timenow[0]) >= 17) or (int(timenow[0]) <= 8)):
-        m = random.randint(0, 2)
+        m = random.randint(0, 3)
         await channel.send(f"{messages[m]}")
     
 
@@ -79,20 +127,7 @@ async def songOTD():
         c.close()
         db.close()
 
-        
-@client.event
-async def on_message(message):
-    msg_count += 1
-    if msg_count % 100 = 0:
-        guild = client.get_guild(744817281871249428)
-        channel = guild.get_channel(801326450396758076)
-        await channel.send("HONK")
-        
-        
-@client.command()
-async def echo(self, ctx, *, statement):
-    await ctx.message.delete(delay=0)
-    await ctx.send(f"{statement}")
+
 
 # @client.command()
 # async def addsongs(ctx, url):
@@ -116,6 +151,19 @@ async def echo(self, ctx, *, statement):
 #     await ctx.send("Added")
 #     c.close()
 #     db.close()
+
+
+@client.event
+async def on_message(message):
+    global msg_count
+    msg_count += 1
+    guild = client.get_guild(744817281871249428)
+    channel = guild.get_channel(801326450396758076)
+    if msg_count % 200 == 0:
+        messages = ["HONK", "Duck Duck Duck GOOSE", "BRRRRZK", "Give me a - wait one sec phone call"]
+        m = random.randint(0, 3)
+        await channel.send(f"{messages[m]}")
+
 
 
 @client.event
